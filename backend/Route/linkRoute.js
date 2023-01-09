@@ -3,8 +3,7 @@ const router = express.Router();
 const { getLink , 
         getLinks, 
         createLink, 
-        deleteLink , 
-        updateLink} = require('../Controller/linkController');
+        deleteLink } = require('../Controller/linkController');
 
 router
 
@@ -12,6 +11,5 @@ router
 .get(    "/", getLinks)
 .get(    "/:id", getLink)
 .delete( "/:id", deleteLink)
-.patch(  "/:id", updateLink)
 
 module.exports = router;
