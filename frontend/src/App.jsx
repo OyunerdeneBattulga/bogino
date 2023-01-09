@@ -1,10 +1,25 @@
-import React from 'react'
-import { useState } from 'react'
 import { Logo } from './img/logoBogino'
-
+import {React, useState} from "react";
+import CopyToClipboard from "react-copy-to-clipboard";
+import axios from 'axios'
 
 export const App = () => {
-  const [Llink, setLlink] = useState(' ');
+
+  const [userInput, setUserInput] = useState("");
+  const [shortenedLink, setShortenedLink] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios(
+        `https://api.shrtco.de/v2/shorten?url=${userInput} `
+      );
+      setShortenedLink(response.data.result.full_short_link);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+  
     const styles = {
         input:{
             width:"35vw",
@@ -26,7 +41,7 @@ export const App = () => {
             fontSize:20,
         },
         al:{
-            height:"50vh",
+            height:"20vh",
             width:"100vw",
             display:"flex",
             justifyContent:"center",
@@ -38,15 +53,40 @@ export const App = () => {
             justifyContent:"center",
             alignItems:"center",
           },
+          el:{
+            height:"30vh",
+            marginLeft:"30vw",        
+          },
+          holboos:{
+            color:"grey"
+          },
     }
+
+
   return (
     <div>
       <div style={styles.logo}><Logo/></div>
     <div style={styles.al}>
-        <input  style={styles.input} type="text" placeholder='https://www.web-huudas.mn' />
-        <button style={styles.button} >Богиносгох</button>
-        <p>Өгөгдсөн холбоос:</p>
-        <p>{Llink}</p>
+
+        <input  style={styles.input} type="text" 
+        placeholder='https://www.web-huudas.mn' 
+        value={userInput}
+        onChange={(e)=>{setUserInput(e.target.value)}}/>
+
+        <button type="submit"
+        style={styles.button} 
+        onClick={() => {fetchData()}}>
+          Богиносгох</button>
+
+    </div>
+    <div style={styles.el}>
+        <p style={styles.holboos}>Өгөгдсөн холбоос</p>
+        <p>{userInput}</p>
+        <p style={styles.holboos}>Богино холбоос</p>
+        <p>{shortenedLink}</p>
+      <CopyToClipboard text={shortenedLink}>
+     <button style={{color:"green" , background:"none" , border:"none"}}> Хуулж авах</button> 
+     </CopyToClipboard>
     </div>
     </div>
   )
