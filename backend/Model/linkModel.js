@@ -7,6 +7,6 @@ const LinkSchema = new Schema({
 });
 
 
-const LinkModel= model("Link" , LinkSchema);
+const LinkModel= model("Link" , LinkSchema);   //links
 
 module.exports = LinkModel; 

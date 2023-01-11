@@ -42,6 +42,7 @@ export const Header = () => {
     <div style={styles.Header}>
         <p style={styles.text}>Хэрхэн ажилладаж вэ?</p>
         <Link to="../pages/Login.jsx" onClick={useLocation().pathname === "/Header" ? styles.button : styles.but}><button>Нэвтрэх</button></Link>
+        <Link to="../pages/History.jsx" onClick={useLocation().pathname === "/History" ? styles.button : styles.but}><button>History</button></Link>
     </div>
   )
 }

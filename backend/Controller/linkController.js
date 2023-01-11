@@ -1,13 +1,11 @@
 const { request , response } = require("express");
 const LinkModel = require('../Model/linkModel');
-const  crypto = require("crypto")
 
 
 
 exports.createLink = async (request, response , next) => {
     try {
-        const random = crypto.randomBytes(5).toString('hex');
-        const createlink = await link.create({link: request.body.link, id: random})
+        const createlink = await LinkModel.create({link:request.body.link,short:'http://localhost:8000/'})
         response
         .status(201)
         .json({message: `new link create`, data:createlink})
