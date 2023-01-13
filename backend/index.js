@@ -1,18 +1,9 @@
 const express = require('express');
-var cors = require('cors')
 const connect = require("./db")
 
 connect();
 
 const linksRouter = require("./Route/linkRoute")
-
-// const corsOptions ={
-//     origin: 'http://localhost:8000/', 
-//     credentials:true,        
-//     optionSuccessStatus:200
-// }
-// app.use(cors(corsOptions));
-
 
 const port = 8000;
 const app = express();

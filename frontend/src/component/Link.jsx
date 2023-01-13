@@ -17,10 +17,10 @@ export const Link = ({link , short}) => {
         <p style={styles.holboos}>Өгөгдсөн холбоос</p>
         <p>{link}</p>
         <p style={styles.holboos}>Богино холбоос</p>
-        <p>{short}</p>
+        <a href={short}>{short}</a>
     </div>
-      <CopyToClipboard onClick={() => {navigator.clipboard.writeText(short)}} > 
-      <a href={short}>Хуулж авах</a>
+      <CopyToClipboard onClick={() => {navigator.clipboard.writeText({link})}} > 
+      <button>Хуулж авах</button>
       </CopyToClipboard>
     </div>
   )
