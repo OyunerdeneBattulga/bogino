@@ -9,6 +9,7 @@ import App from './App.jsx';
 import Header from './component/Header.jsx';
 import Footer from './component/Footer.jsx';
 import History from './pages/History'
+import Red from './pages/Red'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,7 +18,8 @@ root.render(
       <Header/>
       <Routes>
         <Route path="/" element={<App/>}></Route>
-        <Route path="/History" element={<History/>}></Route>
+        <Route path="/" element={<History/>}></Route>
+        <Route path="/:id" element={<Red/>}></Route>
       </Routes>
       <Footer/>
     </BrowserRouter>

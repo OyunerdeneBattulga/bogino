@@ -1,35 +1,34 @@
 const { request , response } = require("express");
 const LinkModel = require('../Model/linkModel');
-const isUrl = require("is-valid-http-url");
-// const crypto = require("crypto")
+const crypto = require("crypto")
 
-
-exports.createLink = async (request, response , next) => {
-    const link = await LinkModel.findOne({link: request.body.link});
-    if(isUrl(request.body.link) === true){
-        if(link){
-            return response.status(201).json({data: link})
-        }
-        const createLink = await LinkModel.create({...request.body})
-        const updateLink = await LinkModel.findByIdAndUpdate(createLink._id, {short: 'http://localhost:3000/' + createLink._id})
-        response   
-            .status(201)
-            .json({message: `created`, data: {...updateLink._doc, short: 'http://localhost:3000/' + createLink._id}})
-    }else{
-        console.log('not url');
-    }
-}
+exports.createLink = async (req, res, next) => {
+    const random = crypto.randomBytes(5).toString("hex");
+    const link = await LinkModel.create({
+      link: req.body.link,
+      id: random,
+      short: "http://localhost:3000/" + random,
+    });
+    res.status(200).json({
+      success: true,
+      data: link,
+    });
+  };
 
 
 exports.getLink = async (request,response,next) => {
+    console.log("sssss")
     const { id } = request.params;
+    console.log(id);
     try{
-        const link = await LinkModel.findById(id);
+        const link = await LinkModel.findOne({id: id});
+        console.log(link)
         response.status(200).json({
             message:true , 
             data:link
         })
     }catch(error){
+        console.log(error)
         return response.status(400).json({message:error , data:null})
     }
 }

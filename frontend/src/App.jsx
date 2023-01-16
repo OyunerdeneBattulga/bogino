@@ -71,7 +71,7 @@ export const App = () => {
         placeholder='https://www.web-huudas.mn' 
         value={link}
         onChange={(e)=>{setLink(e.target.value)}}/>
-        
+
         <button type="submit" 
         style={styles.button} 
         onClick={create}>
