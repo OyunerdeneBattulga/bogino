@@ -17,12 +17,12 @@ exports.createLink = async (req, res, next) => {
 
 
 exports.getLink = async (request,response,next) => {
-    console.log("sssss")
+    // console.log("sssss")
     const { id } = request.params;
-    console.log(id);
+    // console.log(id);
     try{
         const link = await LinkModel.findOne({id: id});
-        console.log(link)
+        // console.log(link)
         response.status(200).json({
             message:true , 
             data:link

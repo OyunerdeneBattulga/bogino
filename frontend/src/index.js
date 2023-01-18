@@ -8,7 +8,7 @@ import {BrowserRouter , Routes , Route} from 'react-router-dom'
 import App from './App.jsx';
 import Header from './component/Header.jsx';
 import Footer from './component/Footer.jsx';
-import History from './pages/History'
+import History from './pages/History.jsx'
 import Red from './pages/Red'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

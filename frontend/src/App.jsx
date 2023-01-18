@@ -2,6 +2,7 @@ import { Logo } from './img/logoBogino'
 import {React, useState} from "react";
 import axios from 'axios'
 import Link from './component/Link'
+import History from './pages/History'
 
 export const App = () => {
 
@@ -9,7 +10,8 @@ export const App = () => {
   const [short, setShort] = useState("");
   const [res1, setRes1] = useState();
   const [res2 , setRes2] = useState();
-  
+
+
   const create = async () => {
     await axios
       .post("http://localhost:8000/", {link : link , short : short})
@@ -22,9 +24,7 @@ export const App = () => {
       });
       setLink("")
       setShort("")
-
-      
-  };
+    };
   
     const styles = {
         input:{
@@ -78,6 +78,9 @@ export const App = () => {
         Богиносгох</button> 
     </div>
         <Link short={res2} link={res1}></Link>
+        <button>
+          <History/>
+        </button>
     </div>
   )
 }

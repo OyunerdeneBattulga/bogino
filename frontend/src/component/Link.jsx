@@ -1,5 +1,4 @@
 import React from 'react'
-import CopyToClipboard from "react-copy-to-clipboard";
 
 export const Link = ({link , short}) => {
   const styles = {
@@ -10,6 +9,13 @@ export const Link = ({link , short}) => {
     holboos:{
       color:"grey"
     },
+    button:{
+      color:"green",
+      background:"none",
+      border:"none",
+      marginLeft:"20vw",
+      marginTop:"-10vh",
+    }
   }
   return (
     <div>
@@ -18,8 +24,8 @@ export const Link = ({link , short}) => {
         <p>{link}</p>
         <p style={styles.holboos}>Богино холбоос</p>
         <p>{short}</p>
+      <button onClick={() => {navigator.clipboard.writeText(short)}} style={styles.button}>Хуулж авах</button>
     </div>
-      <button onClick={() => {navigator.clipboard.writeText(short)}} >Хуулж авах</button>
     </div>
   )
 }
