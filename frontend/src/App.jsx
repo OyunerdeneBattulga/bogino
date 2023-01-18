@@ -10,6 +10,7 @@ export const App = () => {
   const [short, setShort] = useState("");
   const [res1, setRes1] = useState();
   const [res2 , setRes2] = useState();
+  
 
 
   const create = async () => {
@@ -20,7 +21,7 @@ export const App = () => {
         setRes2(response.data.data.short);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error); 
       });
       setLink("")
       setShort("")
@@ -78,11 +79,12 @@ export const App = () => {
         Богиносгох</button> 
     </div>
         <Link short={res2} link={res1}></Link>
-        <button>
-          <History/>
-        </button>
+        <History short={res2} link={res1}></History>
     </div>
   )
 }
 
 export default App ;
+
+
+
