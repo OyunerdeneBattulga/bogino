@@ -2,7 +2,7 @@ import {React , useState, useEffect} from 'react';
 import axios from 'axios';
 import Link from '../component/Link'
 
-export const History = ({link , short} , response) => {
+export const History = (response) => {
   
   const styles = {
     all:{
@@ -26,7 +26,7 @@ export const History = ({link , short} , response) => {
     <div>
     <div style={styles.all}>
       {links && links.map((hist,index)=> {
-          <Link link={hist.link} short={hist.short} key={index}/>
+        return(<Link link={hist.link} short={hist.short} key={index}/>)
       })}
     </div>
     </div>

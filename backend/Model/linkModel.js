@@ -4,6 +4,7 @@ const LinkSchema = new Schema({
     link:String,
     short:String,
     id:String,
+    userID:String,
 });
 
 
