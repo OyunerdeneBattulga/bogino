@@ -1,10 +1,11 @@
-import { Logo } from './img/logoBogino'
 import {React, useState} from "react";
 import axios from 'axios'
+import './assent/Font.css'
 import Link from './component/Link'
-import History from './pages/History'
+import Header from "./component/Header";
+import Footer from "./component/Footer";
 
-export const App = () => {
+ const App = () => {
 
   const [link, setLink] = useState("");
   const [short, setShort] = useState("");
@@ -46,6 +47,7 @@ export const App = () => {
             borderRadius:"2vw",
             marginLeft:"1vw",
             fontSize:20,
+            fontFamily:'Ubuntu',
         },
         al:{
             height:"20vh",
@@ -65,9 +67,8 @@ export const App = () => {
 
   return (
     <div>
-      <div style={styles.logo}><Logo/></div>
+      <Header/>
     <div style={styles.al}>
-
         <input  style={styles.input} type="text" 
         placeholder='https://www.web-huudas.mn' 
         value={link}
@@ -78,8 +79,8 @@ export const App = () => {
         onClick={create}>
         Богиносгох</button> 
     </div>
-        <Link short={res2} link={res1}></Link>
-        <History short={res2} link={res1}></History>
+        <Link short={res2} link={res1}/>
+        <Footer/>
     </div>
   )
 }

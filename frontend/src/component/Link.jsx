@@ -1,4 +1,5 @@
 import React from 'react'
+import "../assent/Font.css"
 
 export const Link = ({link , short}) => {
   const styles = {
@@ -7,7 +8,8 @@ export const Link = ({link , short}) => {
       marginLeft:"30vw",        
     },
     holboos:{
-      color:"grey"
+      color:"grey",
+      fontFamily:'Ubuntu',
     },
     button:{
       color:"green",
@@ -15,6 +17,7 @@ export const Link = ({link , short}) => {
       border:"none",
       marginLeft:"20vw",
       marginTop:"-10vh",
+      fontFamily:'Ubuntu',
     }
   }
   return (

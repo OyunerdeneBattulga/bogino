@@ -4,8 +4,13 @@ const { getLink ,
         getLinks, 
         createLink} = require('../Controller/linkController');
 
-router
+        // const auth = require("../middleware/auth")
 
+router
+// .get(auth , getUsers)
+// .post(auth , login)
+
+router
 .post(   "/", createLink)
 .get(    "/", getLinks)
 .get(    "/:id", getLink)
