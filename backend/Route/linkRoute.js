@@ -2,17 +2,20 @@ const express = require("express");
 const router = express.Router();
 const { getLink , 
         getLinks, 
-        createLink} = require('../Controller/linkController');
+        createLink,
+        hashLink,
+        getPopulate
+} = require('../Controller/linkController');
 
-        // const auth = require("../middleware/auth")
+// const auth = require("../middleware/auth")
+
+
 
 router
-// .get(auth , getUsers)
-// .post(auth , login)
-
-router
-.post(   "/", createLink)
-.get(    "/", getLinks)
-.get(    "/:id", getLink)
+.post("/",     hashLink)
+.post("/",     createLink)
+.get( "/",     getPopulate)
+.get( "/",     getLinks)
+.get( "/:id",  getLink)
 
 module.exports = router;

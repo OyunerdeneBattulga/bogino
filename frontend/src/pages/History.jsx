@@ -53,10 +53,14 @@ const styles = {
     flexDirection: "row",
   },
   black: {
-    height: "15px",
+    height: "10vh",
     width: "30vw",
     color: "black",
     fontSize: "15px",
+    position:"relative",
+    border:"1px solid black",
+    display:"flex",
+    flexWrap:"wrap",
   },
   history: {
     color: "#02B589",
@@ -79,9 +83,6 @@ const styles = {
     justifyContent: "space-between",
     flexDirection: "column",
   },
-  all: {
-   
-  },
   links: {
     height: "200px",
     width: "100px",
@@ -92,20 +93,13 @@ const styles = {
 const LinkComponent = ({link, short}) => {
   return (
     <div style={styles.new}>
-            <div style={styles.grey}>
-              Өгөгдсөн холбоос:
-              <div style={styles.black}>{link}</div>
+            <div style={styles.grey}>Өгөгдсөн холбоос:
+             <div style={styles.black}>{link}</div>
             </div>
-            <div style={styles.grey}>
-              Богино холбоос:
+            <div style={styles.grey}>Богино холбоос:
               <div style={styles.links}>
-                <div style={styles.height} >
-                  {short}
-                </div>
-                <button
-                >
-                  Хуулж авах
-                </button>
+                <div style={styles.height}>{short}</div>
+                <button>Хуулж авах</button>
               </div>
             </div>
           </div>
@@ -118,7 +112,6 @@ export const History = () => {
     axios
       .get("http://localhost:8000/")
       .then((response) => {
-        console.log(response)
         setHistory(response.data.data);
       })
       .catch((error) => {

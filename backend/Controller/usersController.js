@@ -9,9 +9,10 @@ exports.signup = async (request, response, next) => {
         const {password, email} = request.body;
         const existingUser = await UserModel.findOne({ email:email});
         if(existingUser) { 
-            return res.status(409).json({message:"butgeltei hereglegch baina"});
+            return response.status(409).json({message:"butgeltei hereglegch baina"});
         }
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const salt = bcrypt.genSaltSync(10)
+        const hashedPassword = bcrypt.hashSync(password, salt)
         const result = await UserModel.create({
             email:email,
             password:hashedPassword
@@ -25,16 +26,17 @@ exports.signup = async (request, response, next) => {
 }
 
 
+
 exports.login = async(request, response, next) => {
     try{
         const {email, password} = request.body;
         const existingUser = await UserModel.findOne({password:password , email:email});
         if(!existingUser){
-            return res.status(404).json({message:"email esvel nuuts ud buruu baina"});
+            return response.status(404).json({message:"email esvel nuuts ud buruu baina"});
         }
         const matchPassword = await bcrypt.compare(password, existingUser.password);
         if(!matchPassword){
-            return res.status(404).json({message:"email esvel nuuts ug buruu baina"});
+            return response.status(404).json({message:"email esvel nuuts ug buruu baina"});
         }
         const token = jwt.sign({email:result.email, id:result._id}, SECRET_KEY);
         response.status(201).json({user:existingUser, token: token});
@@ -59,6 +61,23 @@ exports.getUsers = async (requestuest,response,next) => {
         return response.status(400).json({message:error , data:null})
     }
 }
+
+
+exports.getUser = async (request,response,next) => {
+    const { id } = request.params;
+    try{
+        const user = await UserModel.findById(id);
+        response.status(200).json({
+            message:true , 
+            data:user
+        })
+    }catch(error){
+        console.log(error)
+        return response.status(400).json({message:error , data:null})
+    }
+}
+
+
 
 // exports.getUser = async (request,response,next) => {
 //     const { id } = request.params;

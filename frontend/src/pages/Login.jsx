@@ -63,6 +63,8 @@ export const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [emailInput, setEmailInput] = useState("");
   const [user, setUser] = useState("");
 
   const Log = async () => {
@@ -76,11 +78,6 @@ export const Login = () => {
       });
       setEmail("")
       setPassword("")
-      if (email === emailInput) {
-        console.log("nevterh")
-      }else{
-        console.log("butgelgui")
-      }
     };
 
   return (
@@ -91,12 +88,12 @@ export const Login = () => {
 
             <div>
             <p style={styles.text}>Цахим хаяг</p>
-            <input type="text" placeholder='email' style={styles.input} value={emailInput} onChange={(e)=>{setEmail(e.target.value)}}/>
+            <input type="text" placeholder='email' style={styles.input} value={emailInput} onChange={(e)=>{setEmailInput(e.target.value)}}/>
             </div>
 
             <div>
             <p style={styles.text}>Нууц үг</p>
-            <input type="text" placeholder='password' style={styles.input} value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
+            <input type="text" placeholder='password' style={styles.input} value={passwordInput} onChange={(e)=>{setPasswordInput(e.target.value)}}/>
             </div>
 
         <div>

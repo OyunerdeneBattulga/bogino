@@ -2,19 +2,52 @@ const { request , response } = require("express");
 const LinkModel = require('../Model/linkModel');
 const crypto = require("crypto")
 
-exports.createLink = async (req, res, next) => {
-    const random = crypto.randomBytes(5).toString("hex");
-    const link = await LinkModel.create({
-      link: req.body.link,
-      id: random,
-      short: "http://localhost:3000/" + random,
-    });
-    res.status(200).json({
-      success: true,
-      data: link,
-    });
+exports.createLink = async (request, response, next) => {
+    try {
+        const random = crypto.randomBytes(5).toString("hex");
+        const link = await LinkModel.create({
+            link: request.body.link,
+            id: random,
+            short: "http://localhost:3000/" + random,
+        });
+        response.status(201).json({
+            success: true,
+            data: link,
+        });
+    } catch (error) {
+        return response.status(400).json({message:error})
+    }
   }; 
 
+exports.hashLink = async (request, response, next) => {
+    try {
+        const owner = response.locals.id
+        console.log(owner)
+        const link = await LinkModel.create({...request.body , owner});
+        response.status(201).json({
+            success: true,
+            data: link,
+        });
+    } catch (error) {
+        return response.status(400).json({message:error})
+    }
+  }; 
+
+exports.getPopulate = async (request,response,next) => {
+    try{
+        const link = await LinkModel.findById(request.body.id).populate("owner");
+        console.log(owner)
+        response.status(200).json({
+            message:true , 
+            data:link
+        })
+    }catch(error){
+        console.log(error)
+        return response.status(400).json({message:false , data:error})
+    }
+
+
+}
 
 exports.getLink = async (request,response,next) => {
     const { id } = request.params;
@@ -26,11 +59,9 @@ exports.getLink = async (request,response,next) => {
         })
     }catch(error){
         console.log(error)
-        return response.status(400).json({message:error , data:null})
+        return response.status(400).json({message:false , data:error})
     }
 }
-
-
 
 exports.getLinks = async (request,response,next) => {
     try{
@@ -43,8 +74,6 @@ exports.getLinks = async (request,response,next) => {
         return response.status(400).json({message:error , data:null})
     }
 }
-
-
 
 exports.deleteLink = async (request, response) => {
     const { id } = request.params;

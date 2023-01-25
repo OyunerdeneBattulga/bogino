@@ -4,8 +4,8 @@ const cors = require("cors")
 
 connect();
 
-const usersRouter = require("./Route/userRouter")
 const linksRouter = require("./Route/linkRoute")
+const usersRouter = require("./Route/userRouter")
 
 const port = 8000;
 const app = express();
@@ -27,8 +27,8 @@ const corsOptions = {
 app.use(cors(corsOptions))
 // app.use(logger)
 app.use(express.json());
-app.use('/', usersRouter)   
 app.use('/', linksRouter)   
+app.use('/', usersRouter)   
 
 app.listen(port, () => {console.log(`Server running at http://localhost:${port}/`)});
 
