@@ -23,7 +23,13 @@ exports.hashLink = async (request, response, next) => {
     try {
         const owner = response.locals.id
         console.log(owner)
-        const link = await LinkModel.create({...request.body , owner});
+        const random = crypto.randomBytes(5).toString("hex");
+        const link = await LinkModel.create({
+            link: request.body.link,
+            id: random,
+            short: "http://localhost:3000/" + random,
+            owner: request.userId,
+        });
         response.status(201).json({
             success: true,
             data: link,

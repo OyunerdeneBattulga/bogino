@@ -12,6 +12,7 @@ module.exports.auth = (request , response , next) => {
             user = jwt.verify(token , SECRET_KEY),
             request.userId = user.id
             request.email = user.email
+            next();
         }else{
             response.status(401).json({message:"not auth"})
         }

@@ -7,15 +7,15 @@ const { getLink ,
         getPopulate
 } = require('../Controller/linkController');
 
-// const auth = require("../middleware/auth")
+const {auth} = require("../middleware/auth")
 
 
 
 router
-.post("/",     hashLink)
-.post("/",     createLink)
-.get( "/",     getPopulate)
-.get( "/",     getLinks)
-.get( "/:id",  getLink)
+.post("/", auth, hashLink)
+.post("/", auth, createLink)
+.get( "/", auth, getPopulate)
+.get( "/", auth, getLinks)
+.get( "/:id", auth, getLink)
 
 module.exports = router;
