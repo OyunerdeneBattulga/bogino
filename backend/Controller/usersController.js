@@ -7,8 +7,8 @@ const bcrypt = require("bcrypt")
 exports.signup = async (request, response, next) => {
     try {
         const {password, email} = request.body;
-        const existingUser = await UserModel.findOne({ email:email});
-        if(existingUser) { 
+        const existingUser = await UserModel.findOne({ email:email });
+        if(existingUser === email) { 
             return response.status(409).json({message:"butgeltei hereglegch baina"});
         }
         const salt = bcrypt.genSaltSync(10)
@@ -50,7 +50,7 @@ exports.login = async(request, response, next) => {
 
 
 
-exports.getUsers = async (requestuest,response,next) => {
+exports.getUsers = async (request,response,next) => {
     try{
         const users = await UserModel.find();
         response.status(200).json({

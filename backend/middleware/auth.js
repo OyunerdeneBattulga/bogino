@@ -6,7 +6,7 @@ const SECRET_KEY = 'placeholder_secret'
 module.exports.auth = (request , response , next) => {
     try{
         let user
-        let token = request.headers.authornization;
+        let token = request.header.authorization;
         if(token){
             token = token.split(' ')[1],
             user = jwt.verify(token , SECRET_KEY),
@@ -18,6 +18,6 @@ module.exports.auth = (request , response , next) => {
         }
     }catch(error){
         console.log(error)
-        response.status(401).json({message:"not auth"})
+        response.status(401).json({message:"not authorization"})
     }
 }
