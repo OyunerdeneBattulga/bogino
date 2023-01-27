@@ -1,11 +1,9 @@
 import {React , useState} from 'react'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
 import Header from "../component/Header"
 import Footer from "../component/Footer"
 
-export const Login = () => {
+export const Singup = () => {
   const styles = {
     all:{
       marginLeft:"40vw",
@@ -65,18 +63,17 @@ export const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordInput, setPasswordInput] = useState("");
-  const [emailInput, setEmailInput] = useState("");
-  const [user, setUser] = useState("");
 
-  const Log = async () => {
+  const Signup = async () => {
     await axios
-      .get("http://localhost:8000/", {email:email , password:password})
+      .post("http://localhost:8000/", {email:email , password:password})
       .then((response) => {
-        setUser(response.data.data.email , response.data.data.password);
+        console.log(response.data.user)
+        console.log("tanii " + response.data.data.email + "deer burtgel uuslee")
       })
       .catch((error) => {
-        console.log(error); 
+        console.log(error)
+        console.log("err")
       });
       setEmail("")
       setPassword("")
@@ -86,38 +83,24 @@ export const Login = () => {
     <div>
     <Header/>
         <div style={styles.all}>
-        <p style={styles.tit}>Нэвтрэх</p>
 
             <div>
             <p style={styles.text}>Цахим хаяг</p>
-            <input type="text" placeholder='email' style={styles.input} value={emailInput} onChange={(e)=>{setEmailInput(e.target.value)}}/>
+            <input type="text" placeholder='email' style={styles.input} value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
             </div>
 
             <div>
             <p style={styles.text}>Нууц үг</p>
-            <input type="text" placeholder='password' style={styles.input} value={passwordInput} onChange={(e)=>{setPasswordInput(e.target.value)}}/>
+            <input type="text" placeholder='password' style={styles.input} value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
             </div>
 
         <div>
-          <div style={styles.checkbox}>
-        <input type="checkbox" style={{...{color:"green"}}}/>
-        <p style={{...styles.textGr , ...{width:"6vw"}}}>Намайг сана</p>
-        <p style={styles.mart}>Нууц үгээ мартсан</p>
-          </div>
-
+        <button onClick={Signup}>Submit</button> 
         </div>
-        <button style={styles.button} onClick={Log}>Нэвтрэх</button>
-        <p>{user}</p>
-        <Link 
-        to="/Signup" 
-        onClick={useLocation().pathname === "/Signup"}>
-          <button 
-          style={{...styles.textGr , ...{width:"13vw" , marginLeft:"4vw" , marginTop:"5vh"}}} 
-          >Шинэ хэрэглэгч бол энд дарна уу?</button></Link>
       </div>
     <Footer/>
     </div>
   )
 }
 
-export default Login;
+export default Singup;
