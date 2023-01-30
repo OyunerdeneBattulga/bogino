@@ -69,7 +69,6 @@ export const Singup = () => {
       .post("http://localhost:8000/", {email:email , password:password})
       .then((response) => {
         console.log(response.data.user)
-        console.log("tanii " + response.data.data.email + "deer burtgel uuslee")
       })
       .catch((error) => {
         console.log(error)

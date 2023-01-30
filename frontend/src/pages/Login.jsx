@@ -65,15 +65,12 @@ export const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordInput, setPasswordInput] = useState("");
-  const [emailInput, setEmailInput] = useState("");
-  const [user, setUser] = useState("");
 
   const Log = async () => {
     await axios
-      .get("http://localhost:8000/", {email:email , password:password})
+      .post("http://localhost:8000/" , {email:email , password:password})
       .then((response) => {
-        setUser(response.data.data.email , response.data.data.password);
+        console.log(response.data.user)
       })
       .catch((error) => {
         console.log(error); 
@@ -90,12 +87,12 @@ export const Login = () => {
 
             <div>
             <p style={styles.text}>Цахим хаяг</p>
-            <input type="text" placeholder='email' style={styles.input} value={emailInput} onChange={(e)=>{setEmailInput(e.target.value)}}/>
+            <input type="text" placeholder='email' style={styles.input} value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
             </div>
 
             <div>
             <p style={styles.text}>Нууц үг</p>
-            <input type="text" placeholder='password' style={styles.input} value={passwordInput} onChange={(e)=>{setPasswordInput(e.target.value)}}/>
+            <input type="text" placeholder='password' style={styles.input} value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
             </div>
 
         <div>
@@ -107,7 +104,6 @@ export const Login = () => {
 
         </div>
         <button style={styles.button} onClick={Log}>Нэвтрэх</button>
-        <p>{user}</p>
         <Link 
         to="/Signup" 
         onClick={useLocation().pathname === "/Signup"}>

@@ -5,24 +5,24 @@ const SECRET_KEY = 'placeholder_secret'
 const bcrypt = require("bcrypt")
 
 exports.signup = async (request, response, next) => {
-    // try {
-    //     const {password, email} = request.body;
-    //     const existingUser = await UserModel.findOne({ email:email });
-    //     if(existingUser) { 
-    //         return response.status(409).json({message:"butgeltei hereglegch baina"});
-    //     }
-    //     const salt = bcrypt.genSaltSync(10)
-    //     const hashedPassword = bcrypt.hashSync(password, salt)
-    //     const result = await UserModel.create({
-    //         email:email,
-    //         password:hashedPassword
-    //     });
-    //     const token = jwt.sign({email:result.email, id: result._id}, SECRET_KEY);
-    //     response.status(201).json({user:result, token:token});
-    // } catch(error){
-    //     response.status(500).json({message:"ymar negenzuil buruu baina"});
-    //     console.log(error);
-    // }
+    try {
+        const {password, email} = request.body;
+        const existingUser = await UserModel.findOne({ email:email });
+        if(existingUser) { 
+            return response.status(409).json({message:"butgeltei hereglegch baina"});
+        }
+        const salt = bcrypt.genSaltSync(10)
+        const hashedPassword = bcrypt.hashSync(password, salt)
+        const result = await UserModel.create({
+            email:email,
+            password:hashedPassword
+        });
+        const token = jwt.sign({email:result.email, id: result._id}, SECRET_KEY);
+        response.status(201).json({user:result, token:token , message:"butgelUuslee"});
+    } catch(error){
+        response.status(500).json({message:"ymar negenzuil buruu baina"});
+        console.log(error);
+    }
 }
 
 
@@ -30,8 +30,7 @@ exports.signup = async (request, response, next) => {
 exports.login = async (req, res, next) => {
     try {
       const { email, password } = req.body;
-      console.log(email, password);
-      const existingUser = await User.findOne({
+      const existingUser = await UserModel.findOne({
         email,
       });
       if (!existingUser) {
