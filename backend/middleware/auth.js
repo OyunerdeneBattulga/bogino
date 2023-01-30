@@ -10,6 +10,7 @@ module.exports.auth = (request , response , next) => {
         if(token){
             token = token.split(' ')[1],
             user = jwt.verify(token , SECRET_KEY),
+            console.log(user)
             request.userId = user.id
             request.email = user.email
             next();

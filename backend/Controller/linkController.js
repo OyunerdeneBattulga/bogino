@@ -58,7 +58,7 @@ exports.getPopulate = async (request,response,next) => {
 exports.getLink = async (request,response,next) => {
     const { id } = request.params;
     try{
-        const link = await LinkModel.findOne({id: id});
+        const link = await LinkModel.findOne({id: id}); 
         response.status(200).json({
             message:true , 
             data:link

@@ -9,7 +9,7 @@ export const Login = () => {
   const styles = {
     all:{
       marginLeft:"40vw",
-      height:"53vh",
+      height:"43vh",
       marginTop:"7vh"
     },
     tit:{
@@ -61,6 +61,15 @@ export const Login = () => {
       marginLeft:"7vw",
       fontFamily:'Ubuntu',
   },
+  signup:{
+    width:"13vw" ,
+    marginLeft:"43vw",
+    marginBottom:"10vh",
+    color: "#02B589",
+    fontFamily:'Ubuntu',
+    border:"none",
+    backgroundColor:"white",
+  }
   }
 
   const [email, setEmail] = useState("");
@@ -104,13 +113,13 @@ export const Login = () => {
 
         </div>
         <button style={styles.button} onClick={Log}>Нэвтрэх</button>
+        </div>
         <Link 
         to="/Signup" 
         onClick={useLocation().pathname === "/Signup"}>
-          <button 
-          style={{...styles.textGr , ...{width:"13vw" , marginLeft:"4vw" , marginTop:"5vh"}}} 
-          >Шинэ хэрэглэгч бол энд дарна уу?</button></Link>
-      </div>
+        <button 
+        style={styles.signup} 
+        >Шинэ хэрэглэгч бол энд дарна уу?</button></Link>
     <Footer/>
     </div>
   )

@@ -15,10 +15,11 @@ exports.signup = async (request, response, next) => {
         const hashedPassword = bcrypt.hashSync(password, salt)
         const result = await UserModel.create({
             email:email,
-            password:hashedPassword
+            password:hashedPassword,
+            ad :"user",
         });
         const token = jwt.sign({email:result.email, id: result._id}, SECRET_KEY);
-        response.status(201).json({user:result, token:token , message:"butgelUuslee"});
+        response.status(201).json({user:result, token:token});
     } catch(error){
         response.status(500).json({message:"ymar negenzuil buruu baina"});
         console.log(error);
@@ -45,7 +46,7 @@ exports.login = async (req, res, next) => {
           .json({ message: "email esvel nuuts ug buruu baina" });
       }
       const token = jwt.sign(
-        { email: existingUser.email, id: existingUser._id },
+        { email: existingUser.email, id: existingUser._id , message: "nevterlee"},
         SECRET_KEY
       );
       res.status(201).json({ user: existingUser, token });
@@ -57,6 +58,33 @@ exports.login = async (req, res, next) => {
 
 
 
+  exports.getAdmin = async (req,res,next) => {
+    try {
+        const { email, password } = req.body;
+        const existingUser = await UserModel.findOne({
+          email,
+        });
+        if (!existingUser) { 
+          return res
+            .status(404)
+            .json({ message: "email esvel nuuts ud buruu baina" });
+        }
+        const matchPassword = await bcrypt.compare(password, existingUser.password);
+        if (!matchPassword) {
+          return res
+            .status(404)
+            .json({ message: "email esvel nuuts ug buruu baina" });
+        }
+        const token = jwt.sign(
+          { email: existingUser.email, id: existingUser._id , message: "nevterlee"},
+          SECRET_KEY
+        );
+        res.status(201).json({ user: existingUser, token });
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "ymar negen zuil buruu baina" });
+      }
+}
 
 
 exports.getUsers = async (request,response,next) => {

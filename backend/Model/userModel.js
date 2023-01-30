@@ -5,7 +5,7 @@ const UserSchema = new Schema(
         email:String,
         id:String,
         password:String,
-        ad:["user" , "admin" , "superadmin"]
+        ad:["user", "superadmin"]
     },
 );
 

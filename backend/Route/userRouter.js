@@ -6,11 +6,13 @@ const {
     login,
     getUsers, 
     getUser , 
+    getAdmin , 
 } = require('../Controller/usersController');
 
 
 router
 .get("/:id", getUser)
+.get("/", getAdmin)
 .get("/", getUsers)
 .post ('/' , signup)
 .post ('/' , login)
