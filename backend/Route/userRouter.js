@@ -4,17 +4,15 @@ const router = express.Router();
 const { 
     signup,
     login,
-    getUsers, 
+    // getUsers, 
     getUser , 
-    getAdmin , 
 } = require('../Controller/usersController');
 
 
 router
 .get("/:id", getUser)
-.get("/", getAdmin)
-.get("/", getUsers)
+// .get("/", getUsers)
 .post ('/' , signup)
-.post ('/' , login)
+.get ('/' , login)
 
 module.exports = router;
