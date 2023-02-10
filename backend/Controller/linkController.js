@@ -67,7 +67,7 @@ exports.getLink = async (request, response) => {
     }
 };
 
-exports.getLinks = async (request, response) => {
+module.exports.getLinks = async (request, response  , name) => {
     try {
         const links = await LinkModel.find();
         response.status(200).json({
@@ -75,8 +75,10 @@ exports.getLinks = async (request, response) => {
             data: links,
         });
     } catch (error) {
-        return response.status(400).json({ message: error, data: null });
+        // return response.status(400).json({ message: error, data: null });
+        console.log(error)
     }
+    return `${name}`
 };
 
 exports.deleteLink = async (request, response) => {
