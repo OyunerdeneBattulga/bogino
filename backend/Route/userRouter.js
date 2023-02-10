@@ -1,18 +1,16 @@
-const { request } = require("express");
-const express = require("express");
+// eslint-disable-next-line no-unused-vars
+const { request } = require('express');
+const express = require('express');
 const router = express.Router();
-const { 
+const {
     signup,
     login,
-    // getUsers, 
-    getUser , 
+    getUser,
 } = require('../Controller/usersController');
 
-
 router
-.get("/:id", getUser)
-// .get("/", getUsers)
-.post ('/' , signup)
-.get ('/' , login)
+    .get('/:id', getUser)
+    .post('/', signup)
+    .get('/', login);
 
 module.exports = router;

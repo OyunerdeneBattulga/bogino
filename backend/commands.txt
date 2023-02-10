@@ -1,0 +1,46 @@
+-- npx jest
+-- npm i prettier
+-- npm i eslint-plugin-prettier
+-- npm i eslint-config-prettier
+-- npm install eslint
+-- npx eslint --init
+
+// Ok to proceed? (y) y
+// ✔ How would you like to use ESLint? · problems
+// ✔ What type of modules does your project use? · commonjs
+// ✔ Which framework does your project use? · none
+// ✔ Does your project use TypeScript? · No / Yes
+// ✔ Where does your code run? · browser
+// ✔ What format do you want your config file to be in? · JSON
+// Local ESLint installation not found.
+// The config that you've selected requires the following dependencies:
+// eslint@latest
+// ✔ Would you like to install them now? · No / Yes
+// ✔ Which package manager do you want to use? · npm
+
+
+-- npx jest --coverage
+-- npm i jest
+
+backend
+-- npm init 
+
+pm2  =LINK=> https://pm2.keymetrics.io/docs/usage/quick-start/
+npm install pm2 -g
+pm2 start filename
+
+
+        vscode      format on save
+        vscode      auto save
+
+
+        ++ Eslint
+        ++ Prettier                                     command + shift + p
+        ++ Git lens
+        ++ Import cost
+        ++ Auto rename tag
+        ++ Material icon theme
+        ++ Path intellisense
+        ++ IntelliCode
+        ++ LiveShare
+        ++ Color Highlight
